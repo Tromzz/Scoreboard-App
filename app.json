@@ -3,35 +3,47 @@
     "name": "Scoreboard",
     "slug": "Scoreboard",
     "version": "1.0.0",
-
     "web": {
       "favicon": "./assets/favicon.png"
     },
-
     "experiments": {
       "tsconfigPaths": true
     },
-
-    "plugins": [],
-
-    "orientation": "portrait",
+    "plugins": [
+      "expo-router",
+      [
+        "react-native-google-mobile-ads",
+        {
+          "androidAppId": "ca-app-pub-3691331846902867~4137878568",
+          "iosAppId": "ca-app-pub-3691331846902867~9431230555"
+        }
+      ]
+    ],
+    "orientation": "default",
     "icon": "./assets/icon.png",
-
     "userInterfaceStyle": "light",
-
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.scoreboard"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
+      },
+      "package": "com.scoreboard"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "07b13850-a5d1-4be9-8c47-39938bf6f006"
       }
     }
   }
