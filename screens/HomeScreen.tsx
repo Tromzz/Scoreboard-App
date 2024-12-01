@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -7,13 +7,12 @@ import {
   ScrollView,
   StyleSheet,
   Image,
-  Platform,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { loadHistory } from '../utils/storage';
 import * as ScreenOrientation from 'expo-screen-orientation';
 import 'react-native-gesture-handler';
-import { BannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads';
+//import { BannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads';
 
 interface MatchHistoryItem {
   id: string;
@@ -25,16 +24,16 @@ interface MatchHistoryItem {
   whenPlayed: string;
 }
 
-const adUnitId = __DEV__
- ? TestIds.BANNER
- : Platform.OS === 'android'
- ? 'ca-app-pub-3691331846902867/2255448111'
- : 'ca-app-pub-3691331846902867/4686170335';
-const adUnitId2 = __DEV__
- ? TestIds.BANNER 
- : Platform.OS === 'android'
- ? 'ca-app-pub-3691331846902867/1240252484'
- : 'ca-app-pub-3691331846902867/9486408160'
+// const adUnitId = __DEV__
+//  ? TestIds.BANNER
+//  : Platform.OS === 'android'
+//  ? 'ca-app-pub-3691331846902867/2255448111'
+//  : 'ca-app-pub-3691331846902867/4686170335';
+// const adUnitId2 = __DEV__
+//  ? TestIds.BANNER 
+//  : Platform.OS === 'android'
+//  ? 'ca-app-pub-3691331846902867/1240252484'
+//  : 'ca-app-pub-3691331846902867/9486408160'
 
 // Utility function for time ago
 const timeAgo = (dateString: string) => {
@@ -89,24 +88,24 @@ export default function HomeScreen({ navigation }: { navigation: any }) {
         <View style={styles.header}>
           {/* Ad in Placeholder 1 */}
           <View style={styles.placeholder1}>
-            <BannerAd
+            {/* <BannerAd
               unitId={adUnitId}
               size={BannerAdSize.BANNER}
               requestOptions={{
                 requestNonPersonalizedAdsOnly: true,
-              }}
-            />
+              }} 
+            />*/}
           </View>
 
           {/* Ad in Placeholder 2 */}
           <View style={styles.placeholder2}>
-            <BannerAd
+            {/* <BannerAd
               unitId={adUnitId2}
               size={BannerAdSize.BANNER}
               requestOptions={{
                 requestNonPersonalizedAdsOnly: true,
               }}
-            />
+            /> */}
           </View>
         </View>
 
@@ -162,9 +161,9 @@ export default function HomeScreen({ navigation }: { navigation: any }) {
                   <LinearGradient
                     colors={
                       item.scoreA > item.scoreB
-                        ? ['#DB3C44', '#1E1E1E', '#1E1E1E'] // Team A wins, red gradient on left
+                        ? ['#DB3C44', '#261818', '#121212'] // Team A wins, red gradient on left
                         : item.scoreB > item.scoreA
-                          ? ['#1E1E1E', '#1E1E1E', '#250ED4'] // Team B wins, blue gradient on right
+                          ? ['#121212', '#161236', '#250ED4'] // Team B wins, blue gradient on right
                           : ['#DB3C44', '#1E1E1E', '#250ED4'] // Neutral gradient if it's a tie
                     }
                     start={{ x: 0, y: 0.5 }}

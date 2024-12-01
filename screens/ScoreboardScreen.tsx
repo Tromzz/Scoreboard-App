@@ -5,7 +5,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { ScoreContext } from '../context/ScoreContext';
 import { saveHistory } from '../utils/storage';
 import * as ScreenOrientation from 'expo-screen-orientation';
-import { InterstitialAd, AdEventType, TestIds } from 'react-native-google-mobile-ads';
+//import { InterstitialAd, AdEventType, TestIds } from 'react-native-google-mobile-ads';
 
 
 export default function ScoreboardScreen({ navigation, route }) {
@@ -19,16 +19,16 @@ export default function ScoreboardScreen({ navigation, route }) {
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const [tempScoreA, setTempScoreA] = useState(scoreA); // Temporary score for editing Team A
   const [tempScoreB, setTempScoreB] = useState(scoreB); // Temporary score for editing Team B
-  const interstitialAd = InterstitialAd.createForAdRequest(
-    __DEV__
-    ? TestIds.INTERSTITIAL
-    : Platform.OS === 'android'
-    ? 'ca-app-pub-3691331846902867/5125154034 '
-    : 'ca-app-pub-3691331846902867/2906184801',
-    {
-      requestNonPersonalizedAdsOnly: true,
-    }
-  );
+  // const interstitialAd = InterstitialAd.createForAdRequest(
+  //   __DEV__
+  //   ? TestIds.INTERSTITIAL
+  //   : Platform.OS === 'android'
+  //   ? 'ca-app-pub-3691331846902867/5125154034 '
+  //   : 'ca-app-pub-3691331846902867/2906184801',
+  //   {
+  //     requestNonPersonalizedAdsOnly: true,
+  //   }
+  // );
 
 
   useEffect(() => {
@@ -82,20 +82,21 @@ export default function ScoreboardScreen({ navigation, route }) {
             saveHistory(updatedHistory);
             return updatedHistory;
           });
+          navigation.navigate('Home');
           // Load and show interstitial ad
-          interstitialAd.load();
-          interstitialAd.addAdEventListener(AdEventType.LOADED, () => {
-            interstitialAd.show();
-          });
+          // interstitialAd.load();
+          // interstitialAd.addAdEventListener(AdEventType.LOADED, () => {
+          //   interstitialAd.show();
+          // });
 
-          interstitialAd.addAdEventListener(AdEventType.CLOSED, () => {
-            navigation.navigate('Home'); // Navigate to Home screen after the ad
-          });
+          // interstitialAd.addAdEventListener(AdEventType.CLOSED, () => {
+          //   navigation.navigate('Home'); // Navigate to Home screen after the ad
+          // });
 
-          interstitialAd.addAdEventListener(AdEventType.ERROR, () => {
-            console.warn('Ad failed to load. Proceeding to Home screen.');
-            navigation.navigate('Home'); // If the ad fails, proceed to Home
-          });
+          // interstitialAd.addAdEventListener(AdEventType.ERROR, () => {
+          //   console.warn('Ad failed to load. Proceeding to Home screen.');
+          //   navigation.navigate('Home'); // If the ad fails, proceed to Home
+          // });
         },
       },
     ]);
