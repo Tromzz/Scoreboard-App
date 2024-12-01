@@ -7,12 +7,13 @@ import {
   ScrollView,
   StyleSheet,
   Image,
+  Platform,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { loadHistory } from '../utils/storage';
 import * as ScreenOrientation from 'expo-screen-orientation';
 import 'react-native-gesture-handler';
-//import { BannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads';
+import { BannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads';
 
 interface MatchHistoryItem {
   id: string;
@@ -24,16 +25,16 @@ interface MatchHistoryItem {
   whenPlayed: string;
 }
 
-// const adUnitId = __DEV__
-//  ? TestIds.BANNER
-//  : Platform.OS === 'android'
-//  ? 'ca-app-pub-3691331846902867/2255448111'
-//  : 'ca-app-pub-3691331846902867/4686170335';
-// const adUnitId2 = __DEV__
-//  ? TestIds.BANNER 
-//  : Platform.OS === 'android'
-//  ? 'ca-app-pub-3691331846902867/1240252484'
-//  : 'ca-app-pub-3691331846902867/9486408160'
+const adUnitId = __DEV__
+ ? TestIds.BANNER
+ : Platform.OS === 'android'
+ ? 'ca-app-pub-3691331846902867/2255448111'
+ : 'ca-app-pub-3691331846902867/4686170335';
+const adUnitId2 = __DEV__
+ ? TestIds.BANNER 
+ : Platform.OS === 'android'
+ ? 'ca-app-pub-3691331846902867/1240252484'
+ : 'ca-app-pub-3691331846902867/9486408160'
 
 // Utility function for time ago
 const timeAgo = (dateString: string) => {
@@ -88,24 +89,24 @@ export default function HomeScreen({ navigation }: { navigation: any }) {
         <View style={styles.header}>
           {/* Ad in Placeholder 1 */}
           <View style={styles.placeholder1}>
-            {/* <BannerAd
+            <BannerAd
               unitId={adUnitId}
-              size={BannerAdSize.BANNER}
+              size={BannerAdSize.LARGE_BANNER}
               requestOptions={{
                 requestNonPersonalizedAdsOnly: true,
               }} 
-            />*/}
+            />
           </View>
 
           {/* Ad in Placeholder 2 */}
           <View style={styles.placeholder2}>
-            {/* <BannerAd
+            <BannerAd
               unitId={adUnitId2}
-              size={BannerAdSize.BANNER}
+              size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
               requestOptions={{
                 requestNonPersonalizedAdsOnly: true,
               }}
-            /> */}
+            />
           </View>
         </View>
 
@@ -160,9 +161,9 @@ export default function HomeScreen({ navigation }: { navigation: any }) {
                 <View key={index} style={styles.matchCard}>
                   <LinearGradient
                     colors={
-                      item.scoreA > item.scoreB
+                      (item.scoreA ?? 0) > (item.scoreB ?? 0)
                         ? ['#DB3C44', '#261818', '#121212'] // Team A wins, red gradient on left
-                        : item.scoreB > item.scoreA
+                        : (item.scoreB ?? 0) > (item.scoreA ?? 0)
                           ? ['#121212', '#161236', '#250ED4'] // Team B wins, blue gradient on right
                           : ['#DB3C44', '#1E1E1E', '#250ED4'] // Neutral gradient if it's a tie
                     }
@@ -181,7 +182,7 @@ export default function HomeScreen({ navigation }: { navigation: any }) {
                       <View style={styles.teamContainer}>
                         <Text style={styles.teamNameGradientA}>{item.scoreA}</Text>
                         <View style={styles.teamNameWithIcon}>
-                          {item.scoreA > item.scoreB && (
+                          {(item.scoreA ?? 0) > (item.scoreB ?? 0) && (
                             <Image
                               source={require('../assets/QueenIcong.png')}
                               style={[styles.queenIcon]}
@@ -195,7 +196,7 @@ export default function HomeScreen({ navigation }: { navigation: any }) {
                       <View style={styles.teamContainer}>
                         <Text style={styles.teamNameGradientB}>{item.scoreB}</Text>
                         <View style={styles.teamNameWithIcon}>
-                          {item.scoreB > item.scoreA && (
+                          {(item.scoreB ?? 0) > (item.scoreA ?? 0) && (
                             <Image
                               source={require('../assets/QueenIcong.png')}
                               style={[styles.queenIcon]}
@@ -238,8 +239,8 @@ export default function HomeScreen({ navigation }: { navigation: any }) {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: 'black' },
   header: { marginTop: 40, paddingHorizontal: 1 },
-  placeholder1: { height: 140, backgroundColor: '#E0E0E0', borderRadius: 8, marginVertical: 8 },
-  placeholder2: { height: 68, backgroundColor: '#E0E0E0', borderRadius: 8, marginVertical: 8 },
+  placeholder1: { width: '100%', height: 140, borderRadius: 8, justifyContent: 'center', alignItems: 'center' },
+  placeholder2: { width: '100%', height: 60, borderRadius: 8, marginVertical: 10, justifyContent: 'center', alignItems: 'center'},
   scoreList: { flex: 1, marginHorizontal: 16, paddingTop: 16 },
   title: {
     fontSize: 16,

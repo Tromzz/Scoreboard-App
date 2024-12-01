@@ -7,9 +7,10 @@ import { StatusBar } from 'expo-status-bar';
 import ScoreboardScreen from './screens/ScoreboardScreen';
 import { ScoreProvider } from './context/ScoreContext';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-
+import mobileAds from 'react-native-google-mobile-ads';
 
 import './global.css';
+import { LogBox } from 'react-native';
 
 const Stack = createStackNavigator();
 
@@ -19,6 +20,18 @@ export default function App() {
   useEffect(() => {
     setIsStatusBarVisible(true);
   }, []);
+  
+  // Initialize AdMob
+mobileAds()
+  .initialize()
+  .then(() => {
+    console.log('AdMob initialized successfully');
+  });
+mobileAds().setRequestConfiguration({
+  testDeviceIdentifiers: ['EMULATOR'], // 'EMULATOR' enables test ads for all simulators/emulators
+});
+// Ignore unnecessary warnings
+LogBox.ignoreLogs(['Setting a timer']);
 
   return (
      <SafeAreaProvider>
