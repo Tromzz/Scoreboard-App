@@ -28,12 +28,12 @@ interface MatchHistoryItem {
 const adUnitId = __DEV__
  ? TestIds.BANNER
  : Platform.OS === 'android'
- ? 'ca-app-pub-3691331846902867/2255448111'
+ ? 'ca-app-pub-3691331846902867/2255448111' // Android ads ids for banner
  : 'ca-app-pub-3691331846902867/4686170335';
 const adUnitId2 = __DEV__
  ? TestIds.BANNER 
  : Platform.OS === 'android'
- ? 'ca-app-pub-3691331846902867/1240252484'
+ ? 'ca-app-pub-3691331846902867/1240252484' //IOS ads ids for banner also add appid that given into the app.json file
  : 'ca-app-pub-3691331846902867/9486408160'
 
 // Utility function for time ago

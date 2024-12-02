@@ -23,8 +23,8 @@ export default function ScoreboardScreen({ navigation, route }) {
     __DEV__
     ? TestIds.INTERSTITIAL
     : Platform.OS === 'android'
-    ? 'ca-app-pub-3691331846902867/5125154034 '
-    : 'ca-app-pub-3691331846902867/2906184801',
+    ? 'ca-app-pub-3691331846902867/5125154034 ' // Android ads ids for interstitial
+    : 'ca-app-pub-3691331846902867/2906184801', // iOS ads ids for interstitial
     {
       requestNonPersonalizedAdsOnly: true,
     }
