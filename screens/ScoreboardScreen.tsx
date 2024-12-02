@@ -181,7 +181,7 @@ export default function ScoreboardScreen({ navigation, route }) {
           </View>
         </View>
         <View style={styles.editmode}>
-          <Image source={require('../assets/editmode.png')} />
+          <Image style={styles.editmodeImage} source={require('../assets/editmode.png')} resizeMode='contain' />
         </View>
       </LinearGradient>
     );
@@ -190,7 +190,7 @@ export default function ScoreboardScreen({ navigation, route }) {
   return (
     <LinearGradient colors={['#FF4D4D', '#4D4DFF']} style={styles.container}>
       <View style={styles.scoreboard}>
-        <Image source={require('../assets/scoreboard.png')} />
+        <Image style={styles.scoreboardImage} source={require('../assets/scoreboard.png')} resizeMode='contain' />
       </View>
       {/* Team A */}
       <TouchableOpacity
@@ -266,7 +266,11 @@ const styles = StyleSheet.create({
   scoreboard: {
     position: 'absolute',
     zIndex: 1,
-    left: '32%',
+    left: '28%',
+  },
+  scoreboardImage: {
+    width: 400,
+    height: 50,
   },
   teamSection: {
     flex: 1,
@@ -455,7 +459,11 @@ const styles = StyleSheet.create({
   },
   editmode: {
     position: 'absolute',
-    left: '31%',
+    left: '28%',
+  },
+  editmodeImage: {
+    width: 400,
+    height: 50,
   },
   scoreControls: {
     display: 'flex',

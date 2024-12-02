@@ -240,7 +240,7 @@ const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: 'black' },
   header: { marginTop: 40, paddingHorizontal: 1 },
   placeholder1: { width: '100%', height: 140, borderRadius: 8, justifyContent: 'center', alignItems: 'center' },
-  placeholder2: { width: '100%', height: 60, borderRadius: 8, marginVertical: 10, justifyContent: 'center', alignItems: 'center'},
+  placeholder2: { width: '100%', height: 68, borderRadius: 100, marginVertical: 10, justifyContent: 'center', alignItems: 'center' },
   scoreList: { flex: 1, marginHorizontal: 16, paddingTop: 16 },
   title: {
     fontSize: 16,
@@ -267,14 +267,14 @@ const styles = StyleSheet.create({
   matchInfo: { alignItems: 'center' },
   teamNameRed: {
     fontSize: 16,
-    color: '#DB3C44',
+    color: 'white',
     textShadowColor: 'rgba(255, 0, 0, 0.5)',
     textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: 2,
   },
   teamNameBlue: {
     fontSize: 16,
-    color: '#250ED4',
+    color: 'white',
     textShadowColor: 'rgba(0, 0, 255, 0.5)',
     textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: 2,
@@ -339,7 +339,7 @@ const styles = StyleSheet.create({
   teamNameGradientA: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#FF4D4D',
+    color: 'white',
     textShadowColor: 'rgba(255, 0, 0, 0.5)',
     textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: 2,
@@ -347,7 +347,7 @@ const styles = StyleSheet.create({
   teamNameGradientB: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#4D4DFF',
+    color: 'white',
     textShadowColor: 'rgba(0, 0, 255, 0.5)',
     textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: 2,
