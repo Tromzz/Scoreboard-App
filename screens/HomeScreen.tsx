@@ -170,13 +170,14 @@ export default function HomeScreen({ navigation }: { navigation: any }) {
                     start={{ x: 0, y: 0.5 }}
                     end={{ x: 1, y: 0.5 }}
                     locations={[0, 0.5, 1]}>
-                    <View style={styles.matchHeader}>
+                      <View style={styles.matchHeader}><View style={styles.separatorLine} />
                       <Text style={styles.matchDuration}>
                         {Math.floor(item.duration / 60)}:{('0' + (item.duration % 60)).slice(-2)}
                       </Text>
-                      <View style={styles.separatorLine}></View>
+                      <View style={styles.separatorLine1} />
                       <Text style={styles.matchTime}>{timeAgo(item.whenPlayed)}</Text>
-                    </View>
+                    <View style={styles.separatorLine} /></View>
+                    
                     <View style={styles.matchContent}>
                       {/* Team A */}
                       <View style={styles.teamContainer}>
@@ -190,8 +191,8 @@ export default function HomeScreen({ navigation }: { navigation: any }) {
                           )}
                           <Text style={styles.teamNameRed}>{item.playerA}</Text>
                         </View>
-                      </View>
-
+                      </View>                 
+                                    
                       {/* Team B */}
                       <View style={styles.teamContainer}>
                         <Text style={styles.teamNameGradientB}>{item.scoreB}</Text>
@@ -251,7 +252,6 @@ const styles = StyleSheet.create({
   matchCard: {
     borderRadius: 12,
     overflow: 'hidden',
-    marginBottom: 16,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
@@ -261,8 +261,17 @@ const styles = StyleSheet.create({
   separatorLine: {
     flex: 1,
     height: 1,
+    width : 5,
     backgroundColor: '#DDD',
     marginVertical: 16,
+    opacity: 0.5,
+  },
+  separatorLine1: {
+    width: 1,
+    height: 10,
+    backgroundColor: '#DDD',
+    marginVertical: 16,
+    opacity: 0.5,
   },
   matchInfo: { alignItems: 'center' },
   teamNameRed: {
@@ -313,8 +322,7 @@ const styles = StyleSheet.create({
   matchHeader: {
     display: 'flex',
     flexDirection: 'row',
-    marginBottom: 12,
-    gap: 20,
+    gap: 10,
     alignItems: 'center',
     paddingHorizontal: 16,
   },
@@ -337,7 +345,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   teamNameGradientA: {
-    fontSize: 20,
+    fontSize: 25,
     fontWeight: 'bold',
     color: 'white',
     textShadowColor: 'rgba(255, 0, 0, 0.5)',
@@ -345,7 +353,7 @@ const styles = StyleSheet.create({
     textShadowRadius: 2,
   },
   teamNameGradientB: {
-    fontSize: 20,
+    fontSize: 25,
     fontWeight: 'bold',
     color: 'white',
     textShadowColor: 'rgba(0, 0, 255, 0.5)',
@@ -358,8 +366,8 @@ const styles = StyleSheet.create({
     gap: 4, // Add spacing between the crown and name
   },
   queenIcon: {
-    height: 12,
-    width: 12,
+    height: 14,
+    width: 14,
     marginRight: 4,
   },
 });
